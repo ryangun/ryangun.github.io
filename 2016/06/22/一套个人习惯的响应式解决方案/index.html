@@ -1,0 +1,137 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>一套个人习惯的响应式解决方案 | RyanGun&#39;s Blog | &lt;无折腾，不人生！ /&gt;</title>
+  <meta name="author" content="RyanGun">
+  
+  <meta name="description" content="&lt;无折腾，不人生！ /&gt;">
+  
+  
+
+  <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  <meta property="og:title" content="一套个人习惯的响应式解决方案"/>
+  <meta property="og:site_name" content="RyanGun&#39;s Blog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.ico" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="RyanGun&#39;s Blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+</head>
+
+
+<body>
+<div id="page" class="site">
+  <div id="primary" class="content-area">
+
+    <header id="header" class="inner"><div class="site-branding">
+  <h1 class="site-title">
+    <a href="/">RyanGun&#39;s Blog</a>
+  </h1>
+  <p class="site-description">&lt;无折腾，不人生！ /&gt;</p>
+</div>
+<nav id="site-navigation" class="main-navigation" role="navigation">
+  <ul>
+    
+      <li><a href="/">主页</a></li>
+    
+      <li><a href="/archives">归档</a></li>
+    
+  </ul>
+</nav></header>
+
+    <main id="main" class="site-main posts-loop" role="main">
+      <article class="post article">
+
+  
+  
+    <h3 class="article-title"><span>一套个人习惯的响应式解决方案</span></h3>
+  
+
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/2016/06/22/一套个人习惯的响应式解决方案/" rel="bookmark">
+        <time class="entry-date published" datetime="2016-06-22T07:10:11.000Z">
+          2016-06-22
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <p>下面所要说的这个响应式解决方案，是我对比不同的方法再糅合整理成自己习惯的一套方案，一直都在使用，觉得还可以，不一定适合大家，也不可能适合所有的需要响应式的网站，但应付一些官网性质、展示性的静态网站还是游刃有余，总体说一下思路：rem + sass + media query。</p>
+<a id="more"></a>
+<p>响应式的网页设计稿最起码得提供一个PC版和移动版，这个对射妓师也是有一定的要求的：设计的元素能从PC端平滑过渡到移动端，例如一个图的排版在PC和移动端可以是不一样的，但是最好是同一张图片资源，对切图仔来说，就是在不改变DOM代码的情况只通过改变css样式达到改变排版布局。当然，从PC到移动端的过渡中，可以有多种不同视窗宽度范围的排版，只是设计师的前端media query的工作变多变繁琐了。</p>
+<p>通常一个PC排版和一个移动端排版是最理想的，合理安排元素布局，互利共赢呀。</p>
+<h3 id="1、设置viewport，不需要width-device-width、initial-scale-1"><a href="#1、设置viewport，不需要width-device-width、initial-scale-1" class="headerlink" title="1、设置viewport，不需要width=device-width、initial-scale=1"></a>1、设置viewport，不需要width=device-width、initial-scale=1</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- index.html --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"maximum-scale=1, user-scalable=no"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="2、在head中js动态修改根节点html的字号"><a href="#2、在head中js动态修改根节点html的字号" class="headerlink" title="2、在head中js动态修改根节点html的字号"></a>2、在head中js动态修改根节点html的字号</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- index.html --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span><br><span class="line">    <span class="comment">//重置html字体大小</span></span><br><span class="line">    <span class="keyword">var</span> _resize = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">var</span> html = <span class="built_in">document</span>.documentElement,</span><br><span class="line">        w = html.clientWidth/<span class="number">1920</span>, w =<span class="number">16</span>*w;</span><br><span class="line">        html.setAttribute(<span class="string">'style'</span>, <span class="string">'font-size:'</span> + w + <span class="string">'px'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    _resize();</span><br><span class="line">    <span class="built_in">window</span>.addEventListener(<span class="string">'resize'</span>, _resize);</span><br><span class="line"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>通常先做PC端页面，因为PC端内容一般更加丰富，移动端有可能删减。上面代码中，PC端的设计稿是1920，以16号字体为基准。</p>
+<h3 id="3、编写sass，引用编译出的css"><a href="#3、编写sass，引用编译出的css" class="headerlink" title="3、编写sass，引用编译出的css"></a>3、编写sass，引用编译出的css</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">/* index.scss */</span><br><span class="line">$fontSize: 16px;</span><br><span class="line">@function rem($px)&#123;</span><br><span class="line">    @return $px / $fontSize * 1rem;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.banner&#123;</span><br><span class="line">    width: rem(1920px);</span><br><span class="line">    height: rem(500px);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>先定义一个px转化为rem单位的函数rem()，我们就可以像平常按照设计稿的尺寸那样写px，把单位转化工作交给工具。我习惯了用koala来编译压缩，你也可以用grunt/gulp/webpack等前端自动化工具来编译。</p>
+<p>至此，按照这样一发不可收拾、毫无顾忌地用固定布局的方式写出自适应的页面，在某个视窗宽度以上都视为PC端界面。而ipad使用PC端页面还是移动端页面，看视觉稿的实际情况，通常使用PC端页面的布局。</p>
+<h3 id="4、开始移动端媒体查询"><a href="#4、开始移动端媒体查询" class="headerlink" title="4、开始移动端媒体查询"></a>4、开始移动端媒体查询</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">/* index.scss */</span><br><span class="line">@media screen and (max-device-width: 736px) &#123; </span><br><span class="line">    $fontSize: 16px;</span><br><span class="line">    @function rem($px)&#123;</span><br><span class="line">        @return $px / $fontSize * 1rem * 1920 / 640;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    .banner&#123;</span><br><span class="line">        width: rem(640px);</span><br><span class="line">        height: rem(1280px);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面就是以移动端640宽度视觉稿写的移动端样式，设备最大宽度是736px认为是移动端界面。因为head里面是以PC端1920宽度的设计稿来设置html根节点字号的，单位转化函数就要做一些改变了，乘以一个比例1920/640。这样子，又可以按照像平常那样按照640宽度来写px啦。</p>
+<p>假如又多一个视窗宽度范围的视觉稿，做法一样，再写多一个媒体查询就好了，这样pc和移动端平滑过渡，响应式搞定。</p>
+<p>这种方案的优缺点就很明显了：优点是，傻瓜式无痛coding，可以有效降低需要兼顾的视窗范围，可以简化成两种排版（PC和移动）或者只有一种。缺点是，在多种视窗排版的情况下，代码雍余的问题比较突出；所有单独背景图片资源需要设置background-size:100% 100%，雪碧图不好弄，定位也需要百分比，可以借助一下工具<a href="http://responsive-css.spritegen.com/" target="_blank" rel="external">http://responsive-css.spritegen.com/</a>。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+        <div class="article-meta pull-left">
+          
+  
+
+  <span class="post-categories">
+    <i class="icon-categories"></i>
+    <a href="/categories/html-css/">html/css</a>
+  </span>
+
+
+          
+  
+
+  <span class="post-tags">
+    <i class="icon-tags"></i>
+    <a href="/tags/css3/">css3</a>
+  </span>
+
+
+        </div>
+        
+    </footer>
+  </div>
+</article>
+
+  
+
+
+
+    </main>
+
+    <footer id="colophon" class="site-footer" role="contentinfo"><p class="site-info">
+  Proudly powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and
+  Theme by <a href="https://github.com/CodeDaraW/Hacker" target="_blank">Hacker</a>
+  </br>
+  
+  &copy; 2016 RyanGun
+  
+</p>
+</footer>
+    
+  </div>
+</div>
+</body>
+</html>

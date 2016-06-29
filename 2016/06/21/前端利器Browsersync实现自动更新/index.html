@@ -1,0 +1,128 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>前端利器Browsersync实现自动更新 | RyanGun&#39;s Blog | &lt;无折腾，不人生！ /&gt;</title>
+  <meta name="author" content="RyanGun">
+  
+  <meta name="description" content="&lt;无折腾，不人生！ /&gt;">
+  
+  
+
+  <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  <meta property="og:title" content="前端利器Browsersync实现自动更新"/>
+  <meta property="og:site_name" content="RyanGun&#39;s Blog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.ico" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="RyanGun&#39;s Blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+</head>
+
+
+<body>
+<div id="page" class="site">
+  <div id="primary" class="content-area">
+
+    <header id="header" class="inner"><div class="site-branding">
+  <h1 class="site-title">
+    <a href="/">RyanGun&#39;s Blog</a>
+  </h1>
+  <p class="site-description">&lt;无折腾，不人生！ /&gt;</p>
+</div>
+<nav id="site-navigation" class="main-navigation" role="navigation">
+  <ul>
+    
+      <li><a href="/">主页</a></li>
+    
+      <li><a href="/archives">归档</a></li>
+    
+  </ul>
+</nav></header>
+
+    <main id="main" class="site-main posts-loop" role="main">
+      <article class="post article">
+
+  
+  
+    <h3 class="article-title"><span>前端利器Browsersync实现自动更新</span></h3>
+  
+
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/2016/06/21/前端利器Browsersync实现自动更新/" rel="bookmark">
+        <time class="entry-date published" datetime="2016-06-21T03:38:53.000Z">
+          2016-06-21
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <p>咱们切图仔平常在写页面非常烦的一件事是不停地去刷新调试，而这个操作是可以省去的。有尝试过去解决这个问题的朋友估计会知道chrome的livereload插件＋gulp-livereload、npm模块livereload等等，甚至自己写node去监听。如果你不是后者，不妨关注一下<a href="https://www.browsersync.io/" target="_blank" rel="external">Browsersync</a>，它相比各种前者来得简单。</p>
+<a id="more"></a>
+<h3 id="1、全局Install-Browsersync，先确保已经安装了Node-js"><a href="#1、全局Install-Browsersync，先确保已经安装了Node-js" class="headerlink" title="1、全局Install Browsersync，先确保已经安装了Node.js"></a>1、全局Install Browsersync，先确保已经安装了Node.js</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g browser-sync</span><br></pre></td></tr></table></figure>
+<h3 id="2、Start-Browsersync"><a href="#2、Start-Browsersync" class="headerlink" title="2、Start Browsersync"></a>2、Start Browsersync</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> xxx/www</span><br><span class="line">browser-sync start --server --files <span class="string">"test"</span></span><br></pre></td></tr></table></figure>
+<p>去到本地根目录www，对某个项目目录test开启browsersync服务，只要test目录下的文件有修改进行了保存操作，就可以在浏览器里实时更新。<br><img src="http://img14.360buyimg.com/cms/jfs/t2986/350/798429565/84326/1d69f993/5768d2caN6d34bec5.png" width="500"><br>基于安全性问题，类似这种服务都需要服务器环境，这条命令已经帮我们弄了个本地虚拟环境<br><img src="http://img14.360buyimg.com/cms/jfs/t2665/72/2521998943/71154/10e4aac0/5768d52aN34c38e74.png" alt=""><br>乍一看，很眼熟呢！<br><img src="http://img11.360buyimg.com/cms/jfs/t2728/17/2494108223/102290/8769bbcc/5768d529N4528ba76.png" alt=""><br>原来hexo的watch用的就是browsersync。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+        <div class="article-meta pull-left">
+          
+  
+
+  <span class="post-categories">
+    <i class="icon-categories"></i>
+    <a href="/categories/tools/">tools</a>
+  </span>
+
+
+          
+  
+
+  <span class="post-tags">
+    <i class="icon-tags"></i>
+    <a href="/tags/工具/">工具</a>
+  </span>
+
+
+        </div>
+        
+    </footer>
+  </div>
+</article>
+
+  
+
+
+
+    </main>
+
+    <footer id="colophon" class="site-footer" role="contentinfo"><p class="site-info">
+  Proudly powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and
+  Theme by <a href="https://github.com/CodeDaraW/Hacker" target="_blank">Hacker</a>
+  </br>
+  
+  &copy; 2016 RyanGun
+  
+</p>
+</footer>
+    
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Apidoc文档生成工具 | RyanGun&#39;s Blog | &lt;无折腾，不人生！ /&gt;</title>
+  <meta name="author" content="RyanGun">
+  
+  <meta name="description" content="&lt;无折腾，不人生！ /&gt;">
+  
+  
+
+  <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  <meta property="og:title" content="Apidoc文档生成工具"/>
+  <meta property="og:site_name" content="RyanGun&#39;s Blog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.ico" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="RyanGun&#39;s Blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+</head>
+
+
+<body>
+<div id="page" class="site">
+  <div id="primary" class="content-area">
+
+    <header id="header" class="inner"><div class="site-branding">
+  <h1 class="site-title">
+    <a href="/">RyanGun&#39;s Blog</a>
+  </h1>
+  <p class="site-description">&lt;无折腾，不人生！ /&gt;</p>
+</div>
+<nav id="site-navigation" class="main-navigation" role="navigation">
+  <ul>
+    
+      <li><a href="/">主页</a></li>
+    
+      <li><a href="/archives">归档</a></li>
+    
+  </ul>
+</nav></header>
+
+    <main id="main" class="site-main posts-loop" role="main">
+      <article class="post article">
+
+  
+  
+    <h3 class="article-title"><span>Apidoc文档生成工具</span></h3>
+  
+
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/2016/03/25/apidoc文档生成工具/" rel="bookmark">
+        <time class="entry-date published" datetime="2016-03-25T02:56:46.000Z">
+          2016-03-25
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <p>apidoc用了一段时间，虽然功能比较简单，但对快速整理工作中常用的接口api还是非常方便的，能满足日常查阅就行。官网：<a href="http://apidocjs.com/" target="_blank" rel="external">http://apidocjs.com/</a></p>
+<a id="more"></a>
+<h2 id="Install"><a href="#Install" class="headerlink" title="Install"></a>Install</h2><h4 id="如果没有安装npm的，需要先安装"><a href="#如果没有安装npm的，需要先安装" class="headerlink" title="如果没有安装npm的，需要先安装"></a>如果没有安装npm的，需要先安装</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install apidoc -g</span><br></pre></td></tr></table></figure>
+<h2 id="Setting"><a href="#Setting" class="headerlink" title="Setting"></a>Setting</h2><h4 id="新建工作目录和输出目录"><a href="#新建工作目录和输出目录" class="headerlink" title="新建工作目录和输出目录"></a>新建工作目录和输出目录</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir workplace</span><br><span class="line">mkdir doc</span><br></pre></td></tr></table></figure>
+<h4 id="设置apidoc-json配置项"><a href="#设置apidoc-json配置项" class="headerlink" title="设置apidoc.json配置项"></a>设置apidoc.json配置项</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"name"</span>: <span class="string">"example"</span>,</span><br><span class="line">  <span class="string">"version"</span>: <span class="string">"0.1.0"</span>,</span><br><span class="line">  <span class="string">"description"</span>: <span class="string">"apiDoc basic example"</span>,</span><br><span class="line">  <span class="string">"title"</span>: <span class="string">"Custom apiDoc browser title"</span>,</span><br><span class="line">  <span class="string">"url"</span> : <span class="string">"https://api.github.com/v1"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>apidoc.json与workplace、doc在同一级目录下</p>
+<h2 id="Run"><a href="#Run" class="headerlink" title="Run"></a>Run</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apidoc -i workplace/ -o doc/</span><br></pre></td></tr></table></figure>
+<p>workplace/是源文件目录，doc/是渲染出的静态文件目录，文件名可自己定，当workplace中没有工作文件时，会提示error: No files found. { Path: ‘workplace/‘ }</p>
+
+      
+    </div>
+    <footer class="article-footer">
+        <div class="article-meta pull-left">
+          
+  
+
+  <span class="post-categories">
+    <i class="icon-categories"></i>
+    <a href="/categories/tools/">tools</a>
+  </span>
+
+
+          
+  
+
+  <span class="post-tags">
+    <i class="icon-tags"></i>
+    <a href="/tags/tools/">tools</a>
+  </span>
+
+
+        </div>
+        
+    </footer>
+  </div>
+</article>
+
+  
+
+
+
+    </main>
+
+    <footer id="colophon" class="site-footer" role="contentinfo"><p class="site-info">
+  Proudly powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and
+  Theme by <a href="https://github.com/CodeDaraW/Hacker" target="_blank">Hacker</a>
+  </br>
+  
+  &copy; 2016 RyanGun
+  
+</p>
+</footer>
+    
+  </div>
+</div>
+</body>
+</html>

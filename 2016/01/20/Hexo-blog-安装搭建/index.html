@@ -1,0 +1,133 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Hexo blog 安装搭建 | RyanGun&#39;s Blog | &lt;无折腾，不人生！ /&gt;</title>
+  <meta name="author" content="RyanGun">
+  
+  <meta name="description" content="&lt;无折腾，不人生！ /&gt;">
+  
+  
+
+  <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  <meta property="og:title" content="Hexo blog 安装搭建"/>
+  <meta property="og:site_name" content="RyanGun&#39;s Blog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.ico" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="RyanGun&#39;s Blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+</head>
+
+
+<body>
+<div id="page" class="site">
+  <div id="primary" class="content-area">
+
+    <header id="header" class="inner"><div class="site-branding">
+  <h1 class="site-title">
+    <a href="/">RyanGun&#39;s Blog</a>
+  </h1>
+  <p class="site-description">&lt;无折腾，不人生！ /&gt;</p>
+</div>
+<nav id="site-navigation" class="main-navigation" role="navigation">
+  <ul>
+    
+      <li><a href="/">主页</a></li>
+    
+      <li><a href="/archives">归档</a></li>
+    
+  </ul>
+</nav></header>
+
+    <main id="main" class="site-main posts-loop" role="main">
+      <article class="post article">
+
+  
+  
+    <h3 class="article-title"><span>Hexo blog 安装搭建</span></h3>
+  
+
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/2016/01/20/Hexo-blog-安装搭建/" rel="bookmark">
+        <time class="entry-date published" datetime="2016-01-20T02:23:42.000Z">
+          2016-01-20
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <p>欢迎来到 我的个人博客! ，这是我的第一篇文章。本博客使用<a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>工具生成，查看 <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> 获取最新的信息。如果您在使用hexo的过程中遇到任何问题， 您可以在 <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> 上面找到答案，或者您可以在官方<a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>上面留言。</p>
+<a id="more"></a>
+<h2 id="快速开始"><a href="#快速开始" class="headerlink" title="快速开始"></a>快速开始</h2><h3 id="安装hexo，安装前请检查是否已安装node-js、git"><a href="#安装hexo，安装前请检查是否已安装node-js、git" class="headerlink" title="安装hexo，安装前请检查是否已安装node.js、git"></a>安装hexo，安装前请检查是否已安装node.js、git</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo npm install hexo-cli -g</span><br></pre></td></tr></table></figure>
+<h3 id="安装hexo完成后，执行以下命令，hexo将会在指定文件夹中新建所需要的文件"><a href="#安装hexo完成后，执行以下命令，hexo将会在指定文件夹中新建所需要的文件" class="headerlink" title="安装hexo完成后，执行以下命令，hexo将会在指定文件夹中新建所需要的文件"></a>安装hexo完成后，执行以下命令，hexo将会在指定文件夹中新建所需要的文件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ hexo init &lt;folder&gt; //如 hexo init blog</span><br><span class="line">$ <span class="built_in">cd</span> &lt;folder&gt;  //如 <span class="built_in">cd</span> blog</span><br><span class="line">$ npm install</span><br></pre></td></tr></table></figure>
+<h3 id="新建完成后，指定文件夹的目录如下"><a href="#新建完成后，指定文件夹的目录如下" class="headerlink" title="新建完成后，指定文件夹的目录如下"></a>新建完成后，指定文件夹的目录如下</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">blog</span><br><span class="line">├── _config.yml</span><br><span class="line">├── package.json</span><br><span class="line">├── scaffolds</span><br><span class="line">├── <span class="built_in">source</span></span><br><span class="line">|   ├── _drafts</span><br><span class="line">|   └── _posts</span><br><span class="line">└── themes</span><br></pre></td></tr></table></figure>
+<h3 id="创建一篇新的文章"><a href="#创建一篇新的文章" class="headerlink" title="创建一篇新的文章"></a>创建一篇新的文章</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"my new post"</span>  //缩写hexo n <span class="string">"my new post"</span></span><br></pre></td></tr></table></figure>
+<h3 id="启动服务器"><a href="#启动服务器" class="headerlink" title="启动服务器"></a>启动服务器</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server //缩写hexo s</span><br></pre></td></tr></table></figure>
+<h3 id="生成静态文件"><a href="#生成静态文件" class="headerlink" title="生成静态文件"></a>生成静态文件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate //缩写hexo g，加上--watch，可以实时监听文件改动，自动更新</span><br></pre></td></tr></table></figure>
+<h3 id="远程部署网站"><a href="#远程部署网站" class="headerlink" title="远程部署网站"></a>远程部署网站</h3><p>首先，您得在_config.yml中配置所提交的远程仓库地址和目录<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># URL</span></span><br><span class="line"><span class="comment">## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'</span></span><br><span class="line">url: http://yourname.github.io/</span><br><span class="line">root: /</span><br><span class="line"></span><br><span class="line"><span class="comment"># Deployment</span></span><br><span class="line"><span class="comment">## Docs: https://hexo.io/docs/deployment.html</span></span><br><span class="line">deploy:</span><br><span class="line">    <span class="built_in">type</span>: git</span><br><span class="line">    repo: git@github.com:yourname/yourname.github.io.git</span><br><span class="line">    branch: master</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy //缩写hexo d</span><br></pre></td></tr></table></figure>
+<h4 id="更多信息，请查看官方API文档-英文、中文"><a href="#更多信息，请查看官方API文档-英文、中文" class="headerlink" title="更多信息，请查看官方API文档 [英文、中文]"></a>更多信息，请查看官方API文档 [<a href="https://hexo.io/" target="_blank" rel="external">英文</a>、<a href="https://hexo.io/zh-cn/" target="_blank" rel="external">中文</a>]</h4>
+      
+    </div>
+    <footer class="article-footer">
+        <div class="article-meta pull-left">
+          
+  
+
+  <span class="post-categories">
+    <i class="icon-categories"></i>
+    <a href="/categories/hexo/">hexo</a>
+  </span>
+
+
+          
+  
+
+  <span class="post-tags">
+    <i class="icon-tags"></i>
+    <a href="/tags/hexo/">hexo</a>
+  </span>
+
+
+        </div>
+        
+    </footer>
+  </div>
+</article>
+
+  
+
+
+
+    </main>
+
+    <footer id="colophon" class="site-footer" role="contentinfo"><p class="site-info">
+  Proudly powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and
+  Theme by <a href="https://github.com/CodeDaraW/Hacker" target="_blank">Hacker</a>
+  </br>
+  
+  &copy; 2016 RyanGun
+  
+</p>
+</footer>
+    
+  </div>
+</div>
+</body>
+</html>

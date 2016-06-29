@@ -1,0 +1,128 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>mac下搭建最简单的本地服务器 | RyanGun&#39;s Blog | &lt;无折腾，不人生！ /&gt;</title>
+  <meta name="author" content="RyanGun">
+  
+  <meta name="description" content="&lt;无折腾，不人生！ /&gt;">
+  
+  
+
+  <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  <meta property="og:title" content="mac下搭建最简单的本地服务器"/>
+  <meta property="og:site_name" content="RyanGun&#39;s Blog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.ico" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="RyanGun&#39;s Blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+</head>
+
+
+<body>
+<div id="page" class="site">
+  <div id="primary" class="content-area">
+
+    <header id="header" class="inner"><div class="site-branding">
+  <h1 class="site-title">
+    <a href="/">RyanGun&#39;s Blog</a>
+  </h1>
+  <p class="site-description">&lt;无折腾，不人生！ /&gt;</p>
+</div>
+<nav id="site-navigation" class="main-navigation" role="navigation">
+  <ul>
+    
+      <li><a href="/">主页</a></li>
+    
+      <li><a href="/archives">归档</a></li>
+    
+  </ul>
+</nav></header>
+
+    <main id="main" class="site-main posts-loop" role="main">
+      <article class="post article">
+
+  
+  
+    <h3 class="article-title"><span>mac下搭建最简单的本地服务器</span></h3>
+  
+
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/2016/06/01/mac下搭建最简单的本地服务器/" rel="bookmark">
+        <time class="entry-date published" datetime="2016-06-01T03:14:14.000Z">
+          2016-06-01
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <p>有时候在本地开发，你的本地资源可能会遇到安全性问题而无法进行加载，你得需要http协议，you need a local web server，在mac下，http-server可以快速帮你解决这个问题。</p>
+<a id="more"></a>
+<h3 id="全局安装http-server"><a href="#全局安装http-server" class="headerlink" title="全局安装http-server"></a>全局安装http-server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install http-server -g</span><br></pre></td></tr></table></figure>
+<h3 id="启动本地服务器"><a href="#启动本地服务器" class="headerlink" title="启动本地服务器"></a>启动本地服务器</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http-server [path] [options]</span><br></pre></td></tr></table></figure>
+<p>例如，http server .代表在当前目录启动服务，当前目录为根目录，127.0.0.1:8080指向当前目录，如果有index.html或者index.php，指向该页面；http server ./website 在当前目录下的website目录启动服务，./website为根目录，127.0.0.1:8080指向./website，如果有index.html或者index.php，指向该页面；默认端口8080可变，另外，你还可以带上某些参数，详情请看<a href="https://www.npmjs.com/package/http-server" target="_blank" rel="external">http-server</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+        <div class="article-meta pull-left">
+          
+  
+
+  <span class="post-categories">
+    <i class="icon-categories"></i>
+    <a href="/categories/mac/">mac</a>
+  </span>
+
+
+          
+  
+
+  <span class="post-tags">
+    <i class="icon-tags"></i>
+    <a href="/tags/调试/">调试</a>
+  </span>
+
+
+        </div>
+        
+    </footer>
+  </div>
+</article>
+
+  
+
+
+
+    </main>
+
+    <footer id="colophon" class="site-footer" role="contentinfo"><p class="site-info">
+  Proudly powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and
+  Theme by <a href="https://github.com/CodeDaraW/Hacker" target="_blank">Hacker</a>
+  </br>
+  
+  &copy; 2016 RyanGun
+  
+</p>
+</footer>
+    
+  </div>
+</div>
+</body>
+</html>

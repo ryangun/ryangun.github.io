@@ -1,0 +1,133 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>前端利器Browsersync多终端调试 | RyanGun&#39;s Blog | &lt;无折腾，不人生！ /&gt;</title>
+  <meta name="author" content="RyanGun">
+  
+  <meta name="description" content="&lt;无折腾，不人生！ /&gt;">
+  
+  
+
+  <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  <meta property="og:title" content="前端利器Browsersync多终端调试"/>
+  <meta property="og:site_name" content="RyanGun&#39;s Blog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.ico" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="RyanGun&#39;s Blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+</head>
+
+
+<body>
+<div id="page" class="site">
+  <div id="primary" class="content-area">
+
+    <header id="header" class="inner"><div class="site-branding">
+  <h1 class="site-title">
+    <a href="/">RyanGun&#39;s Blog</a>
+  </h1>
+  <p class="site-description">&lt;无折腾，不人生！ /&gt;</p>
+</div>
+<nav id="site-navigation" class="main-navigation" role="navigation">
+  <ul>
+    
+      <li><a href="/">主页</a></li>
+    
+      <li><a href="/archives">归档</a></li>
+    
+  </ul>
+</nav></header>
+
+    <main id="main" class="site-main posts-loop" role="main">
+      <article class="post article">
+
+  
+  
+    <h3 class="article-title"><span>前端利器Browsersync多终端调试</span></h3>
+  
+
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/2016/06/28/前端利器Browsersync多终端调试/" rel="bookmark">
+        <time class="entry-date published" datetime="2016-06-28T07:46:38.000Z">
+          2016-06-28
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <p>前面有讲到Browsersync监听修改保存自动刷新调试的功能，这很方便。但Browsersync的作用不仅仅如此，它还有一个特别重要的功能——多终端调试。还记得类似下面这个截图吗？<br><img src="http://img20.360buyimg.com/cms/jfs/t2977/305/1037475514/101365/82ac55ea/57722e00N50841901.png" alt=""></p>
+<a id="more"></a>
+<p>监听本地目录www下所有的文件，这里有一个测试页面，长这样：<br><img src="http://img13.360buyimg.com/cms/jfs/t2596/32/2784550713/93902/1f2675d5/57723ce9Nab358ba5.png" alt=""></p>
+<p>Local/External是你调试的根目录，而下面那个UI/UI External则是Browsersync的配置后台，看界面：<br><img src="http://img13.360buyimg.com/cms/jfs/t2827/298/2701319331/262772/cb608fb5/57722edfN51f230b6.png" alt=""><br>Overview：概览，包含一些你用到的本地地址和局域网地址等基本信息</p>
+<p><img src="http://img30.360buyimg.com/cms/jfs/t2767/344/2767479135/265418/bd37a222/577230aaN07176046.png" alt=""><br>Sync Option：同步选项，对代码、点击事件、滚动、表单提交等等进行同步更新设置，默认全开启</p>
+<p><img src="http://img10.360buyimg.com/cms/jfs/t2584/129/2736338160/168823/eb47411f/577232f2N890a87d0.png" alt=""><br>History：调试页面历史记录</p>
+<p><img src="http://img12.360buyimg.com/cms/jfs/t2614/241/2728733015/239008/640a1702/577230aaNd4e741e3.png" alt=""><br>Plugins：插件，你可以下载拓展插件来使你的Browersycn更加强大，也可以自己写插件（文档即将开放）</p>
+<p><img src="http://img10.360buyimg.com/cms/jfs/t2791/273/2709181652/281986/621f925e/577230aaN2eb47b6b.png" alt=""><br>Remote Debug：远程调试，更多和CSS写样式设置一些参考辅助有关，默认关闭</p>
+<p><img src="http://img10.360buyimg.com/cms/jfs/t2833/341/2724445174/274466/8bd35214/577230abN47020bd4.png" alt=""><br>Network Throttle：网络设置：你可以模拟你想要的网络环境</p>
+<h3 id="了解这些之后，开始多终端调试"><a href="#了解这些之后，开始多终端调试" class="headerlink" title="了解这些之后，开始多终端调试"></a>了解这些之后，开始多终端调试</h3><p>把你的移动设备连接跟你的本本同样的WIFI，手动设置代理，在浏览器中地址栏输入10.14.208.133:3012/www/blog/demo/test-browsersycn.html<br><img src="http://img11.360buyimg.com/cms/jfs/t2701/315/2770500717/58953/2bc6a19d/57723c5fN8ec144fd.jpg" alt=""><br>这样子，在你的本本上所有的改动，你的移动设备上都能同步调试了。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+        <div class="article-meta pull-left">
+          
+  
+
+  <span class="post-categories">
+    <i class="icon-categories"></i>
+    <a href="/categories/tools/">tools</a>
+  </span>
+
+
+          
+  
+
+  <span class="post-tags">
+    <i class="icon-tags"></i>
+    <a href="/tags/工具/">工具</a>
+  </span>
+
+
+        </div>
+        
+    </footer>
+  </div>
+</article>
+
+  
+
+
+
+    </main>
+
+    <footer id="colophon" class="site-footer" role="contentinfo"><p class="site-info">
+  Proudly powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and
+  Theme by <a href="https://github.com/CodeDaraW/Hacker" target="_blank">Hacker</a>
+  </br>
+  
+  &copy; 2016 RyanGun
+  
+</p>
+</footer>
+    
+  </div>
+</div>
+</body>
+</html>
