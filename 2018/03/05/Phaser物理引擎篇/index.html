@@ -1,0 +1,106 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="&lt;这个人很懒，什么也没有留下！ /&gt;"><title>Phaser物理引擎篇 | RyanGun's Blog</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/4.2.0/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.0/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/3.0.0/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/css/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">Phaser物理引擎篇</h1><a id="logo" href="/.">RyanGun's Blog</a><p class="description">&lt;这个人很懒，什么也没有留下！ /&gt;</p></div><div id="nav-menu"><a href="/." class="current"><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/atom.xml"><i class="fa fa-rss"> 订阅</i></a></div></div><div id="layout" class="pure-g"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">Phaser物理引擎篇</h1><div class="post-meta">Mar 5, 2018<script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js" async></script><span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"></span><span> Hits</span></span></div><div class="post-content"><p>Phaser系列课程初步分成《<a href="//ryangun.github.io/2018/01/04/Phaser基础篇上/">基础篇上</a>》、《<a href="//ryangun.github.io/2018/01/18/Phaser基础篇下/">基础篇下</a>》、《<a href="//ryangun.github.io/2018/01/29/Phaser动画篇/">动画篇</a>》、《<a href="//ryangun.github.io/2018/02/26/Phaser交互篇/">交互篇</a>》、《<a href="//ryangun.github.io/2018/03/05/Phaser物理引擎篇/">物理引擎篇</a>》、《图形绘制篇》、《场景篇》。</p>
+<p>物理引擎为游戏模拟真实的物理场景，可以大大提升一个游戏的趣味性。官方完整的Phaser本身自带三个物理引擎（你也可以自己构建一个不带任何物理引擎的版本）：Arcade、P2、Ninja，可以满足我们大部分的游戏需求，此外还有一个需要花钱购买的物理引擎Box2d插件。此篇，我们逐个介绍三个自带物理引擎，Box2d仅作为拓展知识。</p>
+<p>首先，我们先来简单了解一下这三种物理引擎有什么区别?我们需要根据游戏需求选取适合的物理引擎。</p>
+<p><strong>Arcade：</strong>轻量级高性能AABB式物理碰撞系统，AABB即Axis-aligned Bounded Rectangles，译为轴对称盒子，只能以矩形框计算碰撞区域，精度低，运算速度快，可以实现简单的碰撞、重力等效果。</p>
+<p><strong>P2：</strong>可以实现多种物理模型和物理特性，如Arcade所不能实现的多边形碰撞区域、弹簧、摩擦力、碰撞材质、反弹系数等，功能强大但也必然会使运算复杂、耗费性能。</p>
+<p><strong>Ninja：</strong>可以实现平面、凹凸面、球面等的碰撞，物体在非平整面上碰撞时不会翻倒，跟忍者一样。</p>
+<p>为专门讲解物理引擎，我们准备一个比较纯净的初始化界面，只保留前面课程中的<a href="http://ryangun.snapsnip.cn/phaser/assets/bg.jpg" target="_blank" rel="external">背景</a>、<a href="http://ryangun.snapsnip.cn/phaser/assets/box.png" target="_blank" rel="external">箱子</a>、艾斯（<a href="http://ryangun.snapsnip.cn/phaser/lessons/lesson5/img/sprite_animation2.png" target="_blank" rel="external">关键帧雪碧图</a>, <a href="http://ryangun.snapsnip.cn/phaser/lessons/lesson5/img/sprite_animation2.json" target="_blank" rel="external">json文件</a>），初始<a href="http://ryangun.snapsnip.cn/phaser/lessons/lesson5/" target="_blank" rel="external">Demo</a>，代码如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">var game = new Phaser.Game(750, 750 / window.innerWidth * window.innerHeight, Phaser.CANVAS, &apos;phaser-container&apos;, &#123;</span><br><span class="line">  init: init,</span><br><span class="line">  preload: preload,</span><br><span class="line">  create: create,</span><br><span class="line">  update: update,</span><br><span class="line">  render: render</span><br><span class="line">&#125;, false, true);</span><br><span class="line"></span><br><span class="line">function init() &#123;</span><br><span class="line">  game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;</span><br><span class="line">  game.stage.backgroundColor = &apos;#0c276e&apos;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function preload() &#123;</span><br><span class="line">  game.load.image(&apos;bg&apos;, &apos;img/bg.jpg&apos;);</span><br><span class="line">  game.load.image(&apos;box&apos;, &apos;img/box.png&apos;);</span><br><span class="line">  game.load.atlasJSONHash(&apos;sprite_animation&apos;, &apos;img/sprite_animation2.png&apos;, &apos;img/sprite_animation2.json&apos;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var box;</span><br><span class="line"></span><br><span class="line">function create() &#123;</span><br><span class="line">  // 背景居于底部定位，箱子从最上方正中生成</span><br><span class="line">  game.add.sprite(0, game.height - 1334, &apos;bg&apos;);</span><br><span class="line">  box = game.add.sprite(game.world.centerX, 88, &apos;box&apos;);</span><br><span class="line">  box.anchor.set(0.5);</span><br><span class="line"></span><br><span class="line">  // 创建艾斯</span><br><span class="line">  hero = game.add.sprite(game.world.centerX+250,  game.height - 400, &apos;sprite_animation&apos;, &apos;walk/01&apos;);</span><br><span class="line">  hero.anchor.set(0.5);</span><br><span class="line">  hero.animations.add(&apos;walk&apos;, Phaser.Animation.generateFrameNames(&apos;walk/&apos;, 1, 8, &apos;&apos;, 2));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function update() &#123;&#125;</span><br><span class="line">function render() &#123;&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Arcade"><a href="#Arcade" class="headerlink" title="Arcade"></a>Arcade</h2><p>不管是哪个物理引擎，都需要先给游戏引进物理引擎，引进Arcade：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 开启Arcade物理引擎</span><br><span class="line">game.physics.startSystem(Phaser.Physics.Arcade);</span><br><span class="line">// 全局设置默认重力为300</span><br><span class="line">game.physics.arcade.gravity.y = 300;</span><br></pre></td></tr></table></figure>
+<p>现在场景是看不出什么效果的，要使物理系统对某个物体起作用，需要开启该物体的物理特性，如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// 给hero和box添加物理特性</span><br><span class="line">game.physics.enable([hero, box]);</span><br></pre></td></tr></table></figure></p>
+<p>这样，艾斯和箱子都会在重力的作用下做自由落体运动。对比设置前后，开启物理特性后的对象下的body新增了非常多的属性和方法，大多数和物理特性有关，你可以根据需要进行使用。当前的例子，物体会一直往下掉，通过设置body中一些属性，我们可以改变它们的表示，先熟悉一些常用的属性。</p>
+<h3 id="body常用属性"><a href="#body常用属性" class="headerlink" title="body常用属性"></a>body常用属性</h3><table>
+<thead>
+<tr>
+<th>属性</th>
+<th>类型</th>
+<th>默认值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>acceleration</td>
+<td>object</td>
+<td>{x=0, y=0}</td>
+<td>加速度</td>
+</tr>
+<tr>
+<td>allowGravity</td>
+<td>boolean</td>
+<td>true</td>
+<td>是否启用重力效果</td>
+</tr>
+<tr>
+<td>bounce</td>
+<td>object</td>
+<td>{x=0, y=0}</td>
+<td>设置反弹系数</td>
+</tr>
+<tr>
+<td>collideWorldBounds</td>
+<td>boolean</td>
+<td>false</td>
+<td>是否监测与游戏世界边沿的碰撞</td>
+</tr>
+<tr>
+<td>friction</td>
+<td>object</td>
+<td>{x=1, y=0}</td>
+<td>设置摩擦系数</td>
+</tr>
+<tr>
+<td>gravity</td>
+<td>object</td>
+<td>{x=0, y=0}</td>
+<td>设置物体重力，会和世界重力叠加</td>
+</tr>
+<tr>
+<td>immovable</td>
+<td>boolean</td>
+<td>false</td>
+<td>设置是否固定不动</td>
+</tr>
+<tr>
+<td>mass</td>
+<td>number</td>
+<td>1</td>
+<td>设置重量</td>
+</tr>
+<tr>
+<td>velocity</td>
+<td>object</td>
+<td>{x=0, y=0}</td>
+<td>设置速度</td>
+</tr>
+</tbody>
+</table>
+<h3 id="body常用方法"><a href="#body常用方法" class="headerlink" title="body常用方法"></a>body常用方法</h3><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>setSize</td>
+<td>(width, height, offsetX, offsetY)</td>
+<td>(宽度, 高度, 距离物体左边距, 距离物体上边距)，重设物体的碰撞矩形区域</td>
+</tr>
+</tbody>
+</table>
+<p>所以，我们要检测物体碰到游戏世界边沿就停止，并添加稍微的反弹效果，可以这么做：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">hero.body.collideWorldBounds = true;</span><br><span class="line">hero.body.bounce.set(0.3);</span><br><span class="line">box.body.collideWorldBounds = true;</span><br><span class="line">box.body.bounce.set(0.3);</span><br></pre></td></tr></table></figure>
+<p>为检测艾斯和箱子碰撞，我们添加方向盘事件，控制艾斯移动：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// create</span><br><span class="line">cursors = game.input.keyboard.createCursorKeys();</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">// update</span><br><span class="line">game.physics.arcade.collide(hero, box);</span><br><span class="line">if (cursors.left.isDown) &#123;</span><br><span class="line">  hero.body.velocity.x = -200;</span><br><span class="line">  hero.scale.x = 1;</span><br><span class="line">  hero.play(&apos;walk&apos;, 10);</span><br><span class="line">&#125; else if (cursors.right.isDown) &#123;</span><br><span class="line">  hero.body.velocity.x = 200;</span><br><span class="line">  hero.scale.x = -1;</span><br><span class="line">  hero.play(&apos;walk&apos;, 10);</span><br><span class="line">&#125;else&#123;</span><br><span class="line">  hero.body.velocity.x = 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里要注意的是，在Arcade中，如果物体需要检测碰撞，改变物体位置要用velocity添加位移速度，而非动态改变x或者body.x，另外设置箱子静止，并开启调试模式查看物体碰撞区域：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// create</span><br><span class="line">box.body.immovable = true;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">// render</span><br><span class="line">game.debug.body(hero);</span><br><span class="line">game.debug.body(box);</span><br></pre></td></tr></table></figure>
+<p>改变box碰撞区域：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">box.body.setSize(404, 176, -100, 0);</span><br></pre></td></tr></table></figure>
+<p>待续…..</p>
+</div><script type="text/javascript" src="/js/share.js?v=0.0.0" async></script><a data-url="http://ryangun.github.io/2018/03/05/Phaser物理引擎篇/" data-id="cjiu0iw9j001wl5emm1ctg2nx" class="article-share-link">分享到</a><div class="tags"><a href="/tags/Phaser/">Phaser</a></div><div class="post-nav"><a href="/2018/06/25/实现一个Promise/" class="pre">实现一个Promise</a><a href="/2018/02/26/Phaser交互篇/" class="next">Phaser交互篇</a></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" class="search-form"><input type="text" name="q" maxlength="20" placeholder="Search"/><input type="hidden" name="sitesearch" value="http://ryangun.github.io"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Phaser/">Phaser</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/git/">git</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/html-css/">html/css</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/mac/">mac</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/react/">react</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/tools/">tools</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/移动端/">移动端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/笔记/">笔记</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/tags/工具/" style="font-size: 15px;">工具</a> <a href="/tags/hexo/" style="font-size: 15px;">hexo</a> <a href="/tags/tools/" style="font-size: 15px;">tools</a> <a href="/tags/react/" style="font-size: 15px;">react</a> <a href="/tags/备忘/" style="font-size: 15px;">备忘</a> <a href="/tags/html-css/" style="font-size: 15px;">html/css</a> <a href="/tags/调试/" style="font-size: 15px;">调试</a> <a href="/tags/命令行/" style="font-size: 15px;">命令行</a> <a href="/tags/动画/" style="font-size: 15px;">动画</a> <a href="/tags/css3/" style="font-size: 15px;">css3</a> <a href="/tags/git/" style="font-size: 15px;">git</a> <a href="/tags/Phaser/" style="font-size: 15px;">Phaser</a> <a href="/tags/vuejs/" style="font-size: 15px;">vuejs</a> <a href="/tags/用户体验/" style="font-size: 15px;">用户体验</a> <a href="/tags/移动端/" style="font-size: 15px;">移动端</a> <a href="/tags/Webpack/" style="font-size: 15px;">Webpack</a> <a href="/tags/工作流/" style="font-size: 15px;">工作流</a> <a href="/tags/js/" style="font-size: 15px;">js</a> <a href="/tags/WebVR/" style="font-size: 15px;">WebVR</a> <a href="/tags/H5/" style="font-size: 15px;">H5</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最新文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/06/25/实现一个Promise/">实现一个Promise</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/05/Phaser物理引擎篇/">Phaser物理引擎篇</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/26/Phaser交互篇/">Phaser交互篇</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/29/Phaser动画篇/">Phaser动画篇</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/18/Phaser基础篇下/">Phaser基础篇下</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/04/Phaser基础篇上/">Phaser基础篇上</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/11/疯狂香蕉塔H5项目盘点/">疯狂香蕉塔H5项目盘点</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/27/WebVR的一种实现方式/">WebVR的一种实现方式</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/19/预加载/">预加载</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/19/横竖屏提示层/">横竖屏提示层</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="http://element.jd.com/" title="未知素" target="_blank">未知素</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">© <a href="/." rel="nofollow">RyanGun's Blog.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a id="rocket" href="#top" class="show"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.pack.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="/css/jquery.fancybox.css?v=0.0.0"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>
