@@ -1,0 +1,113 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #555;
+  max-width: 750px;
+  margin: 0 auto;
+  text-align: justify;
+  background: #fff;
+}
+
+a {
+  color: #555;
+}
+
+a:hover {
+  color: #000;
+}
+
+blockquote {
+  margin: 20px 0;
+  padding: 0 15px;
+  color: #666;
+  border-left: 4px solid #ddd;
+}
+
+.container {
+  margin: 0 20px;
+}
+
+.container img {
+  width: 100%;
+  height: auto;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  padding: 0;
+  font-weight: bold;
+  line-height: 1.5;
+  font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+
+h1 {
+  margin: 2em 0;
+  font-size: 22px;
+}
+
+h2 {
+  margin: 20px 0;
+  font-size: 20px;
+}
+
+h3 {
+  margin: 15px 0 10px;
+  font-size: 18px;
+}
+
+h4 {
+  font-size: 16px;
+}
+
+.list1 li {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.list1 li:last-child {
+  margin-bottom: 0;
+}
+
+.list1 li .pic {
+  flex: 1
+}
+
+.list1 li .pic img{
+  width: 100%;
+  height: auto;
+}
+
+.list1 li .desc {
+  flex: 3;
+  padding-left: 20px;
+}
+
+.list1 li .desc h4 {
+  margin-bottom: 5px;
+}
+
+.text {
+  margin-bottom: 10px;
+}
+
+.tips {
+  margin-bottom: 5px;
+  color: #999;
+}
+
+.list2 li {
+  margin-bottom: 10px;
+  list-style: none;
+  font-size: 16px;
+}
